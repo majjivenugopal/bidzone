@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User View Items</title>
+    <style>
+        /* Style for cart items */
+        .item {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            margin: 10px;
+            width: calc(25% - 20px); /* 25% width for each item with margin */
+            box-sizing: border-box; /* Include padding and border in width calculation */
+            position: relative; /* For hovering effect */
+            transition: box-shadow 0.3s; /* Smooth transition for hovering */
+            float: left; /* Make items float left */
+        }
+
+        /* Hover effect on carts */
+        .item:hover {
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); /* Shadow effect on hover */
+        }
+
+        /* Style for buttons */
+        .btn {
+            padding: 8px 16px;
+            text-decoration: none;
+            color: #fff;
+            background-color: #1b4c80;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+            margin-top: 10px;
+            display: block; /* Make buttons block level for full width */
+            text-align: center;
+        }
+
+        /* Hover effect on buttons */
+        .btn:hover {
+            background-color: #0056b3; /* Darker color on hover */
+        }
+
+        /* Clear floats */
+        .clearfix::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+
+        /* Responsive layout for cart items */
+        @media (max-width: 768px) {
+            .item {
+                width: calc(50% - 20px); /* 50% width for each item with margin on smaller screens */
+            }
+        }
+
+        @media (max-width: 576px) {
+            .item {
+                width: calc(100% - 20px); /* Full width for each item with margin on even smaller screens */
+            }
+        }
+
+        /* Style for images */
+        .item img {
+            max-width: 100%; /* Ensure images don't exceed the width of their container */
+            height: auto; /* Maintain aspect ratio */
+            display: block; /* Ensure images don't have any space below them */
+            margin: 0 auto; /* Center images horizontally */
+        }
+
+        /* Container to hold items */
+        .items-container {
+            width: 100%; /* Ensure container spans full width */
+            display: flex; /* Use flexbox */
+            flex-wrap: wrap; /* Wrap items to new row when necessary */
+            justify-content: space-between; /* Space items evenly in the container */
+        }
+        .btn-container {
+            margin-top: 10px;
+            display: flex;
+            justify-content: space-between;
+        }
+    </style>
+</head>
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+        {% for message in messages %}
+      <center><b>{{ message }}</b></center>
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+<body>
+  
+    <h3>User View Items</h3>
+    {% if session.get('seller') %}
+    <a href="{{url_for('seller_dashboard')}}" class="btn btn-secondary">Your Dashboard</a>
+    {% endif %}
+    {% if session.get('user') %}
+    <a href="{{url_for('users_dashboard')}}">{{session.get('user')}}  Dashboard</a>
+    {% endif %}
+
+    {% for item in items %}
+    <div class="item">
+        <img src="{{ url_for('static', filename=item[8]+'.jpg') }}" class="card-img-top" alt="Item Picture">
+        <p><strong>Username:</strong> {{ item[1] }}</p>
+        <p><strong>Item Name:</strong> {{ item[2] }}</p>
+        <p><strong>Description:</strong> {{ item[3] }}</p>
+        <p><strong>Category:</strong> {{ item[4] }}</p>
+        <p><strong>Starting Price:</strong> {{ item[5] }}</p>
+        <p><strong>Status:</strong> {{ item[6] }}</p>
+        <p><strong>Upload Time:</strong> {{ item[7] }}</p>
+        {% if session.get('user') %}
+       
+        <a href="{{ url_for('add_to_favourites', item_id=item[0], username=item[1], item_name=item[2], description=item[3], category=item[4], starting_price=item[5], status=item[6], iid=item[8]) }}">Add to Favorites</a>
+        <a href="{{url_for('biditems', item_id=item[0])}}">Bid to the Item</a>
+        {% endif %}
+        {% if session.get('seller') %}
+       
+        <a href="{{url_for('biditems', item_id=item[0])}}">Bid to the Item</a>
+        {% endif %}
+        
+
+
+    </div>
+    {% endfor %}
+  
+</body>
+</html>

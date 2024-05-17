@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>auction_winning</title>
+    <!-- Include Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Customize CSS as needed */
+        .card-img-top {
+            max-height: 200px; /* Adjust image height as needed */
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+    {% if winning_auctions %}
+        <div class="container mt-4">
+            <a href="{{ url_for('users_dashboard') }}" class="back-btn">GO BACK</a>
+            <div class="row">
+                {% for auction in winning_auctions %}
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <img src="{{ url_for('static', filename= auction[7] + '.jpg') }}" class="card-img-top" alt="Item Image">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ auction[3] }}</h5> <!-- Item Name -->
+                            <p class="card-text">{{ auction[5] }}</p> <!-- Item Description -->
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">Winning Bid Amount: {{ auction[0] }}</li>
+                                <li class="list-group-item">Auction End: {{ auction[1] }}</li>
+                                <li class="list-group-item">Seller Username: {{ auction[2] }}</li>
+                                <li class="list-group-item">Starting Price: {{ auction[6] }}</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    {% else %}
+        <p>No winning auction data available.</p>
+    {% endif %}
+    <!-- Include Bootstrap JS and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/static/home.css" />
+    <title>BidZone</title>
+  </head>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: outfit;
+  background: linear-gradient(
+    109.6deg,
+    rgb(36, 45, 57) 11.2%,
+    rgb(16, 37, 60) 51.2%,
+    rgb(0, 0, 0) 98.6%
+  );
+  padding-top: 120px;
+}
+nav {
+  display: flex;
+  justify-content: space-between;
+  /* margin: 0 60px; */
+  padding: 0 60px;
+  height: 100px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  transition: all 0.5s ease;
+}
+nav .logo{
+    font-size: 40px;
+    padding: 30px 0;
+    font-weight: 700;
+    color: aliceblue;
+}
+nav .logo .zone{
+    color: aqua;
+}
+nav .logo img{
+    width: 80px;
+    position: absolute;
+    top:20px;
+    filter:invert(1)
+}
+nav .nav-links ul {
+  display: flex;
+  color: aliceblue;
+  list-style: none;
+  padding: 40px 0px;
+}
+.nav-links ul li {
+  padding: 0 20px;
+  font-size: 1.4rem;
+  font-weight: 450;
+}
+.nav-links ul a {
+  text-decoration: none;
+  color: aliceblue;
+  transition: all 0.3s ease;
+}
+.nav-links ul a:hover {
+  color: aqua;
+}
+
+/* Section 1 */
+.sec1{
+    display: flex;
+    justify-content: space-between;
+    height: 85vh;
+}
+.sec1-details {
+  padding: 23px;
+  display: block;
+  margin: 50px 60px;
+  max-width: 540px;
+}
+.sec1-details #element {
+  font-size: 50px;
+  color: aliceblue;
+  font-weight: 500;
+  line-height: 1.9;
+}
+.sec1-details .desc{
+  display: block;
+  color: aliceblue;
+  font-size: 22px;
+  line-height: 2.1;
+}
+.sec1-details p {
+  color: aliceblue;
+  font-size: 22px;
+}
+.sec1-details .btn {
+  font-size: 20px;
+  margin: 23px 0px;
+  padding: 12px;
+  border-radius: 12px;
+  background-color: transparent;
+  border: 3px solid aliceblue;
+  color: aliceblue;
+  font-weight: 400;
+  transition: all 0.4s ease;
+}
+.sec1-details .btn:hover{
+    background-color: aqua;
+    color: black;
+}
+.sec1-img img{
+    width: 500px;
+    margin-right: 100px;
+}
+
+
+/* Section 2 */
+.sec2{
+    height: 100vh;
+}
+.sec2 h1{
+    text-align: center;
+    font-size: 44px;
+    color: aqua;
+    font-weight: 500;
+}
+.sec2 .first_block, .second_block{
+    font-size: 23px;
+    display: flex;
+    color: aliceblue;
+    align-items: center;
+    padding: 20px 60px;
+    justify-content: space-around;
+}
+.first_block div:nth-child(1){
+    align-items: center;
+    max-width: 850px;
+}
+.abt_img img{
+    width: 350px;
+    border-radius: 20px;
+}
+.second_block{
+    align-items: center;
+    flex-direction: row-reverse;
+}
+.second_block div:nth-child(1){
+    max-width: 850px;
+}
+.mission_img img{
+    width: 300px;
+    height: 200px;
+    border-radius: 20px;
+}
+.dropdown {
+        position: relative;
+        display: inline-block;
+    }
+
+    .dropdown-content {
+        color: black;
+        display: none;
+        position: absolute;
+        background-color: #1ce9e9;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+    }
+
+    .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+    }
+
+    .dropdown-content a:hover {
+        background-color: #111010;
+    }
+
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+
+    .nav-links ul {
+        /* Other styles */
+        position: relative;
+    }
+
+    .nav-links ul .dropdown .dropdown-content {
+        top: 100%;
+        left: 0;
+    }
+  </style>
+  <body>
+    <nav>
+      <div class="logo">
+        BID<span class="zone">ZONE</span>
+        <img src="/static/logo.png" alt="" />
+      </div>
+      <div class="nav-links">
+        <ul>
+          <a href=""><li>Home</li></a>
+          <a href=""><li>About Us</li></a>
+          <a href="{{url_for('userviewitems')}}"><li>Browse Items</li></a>
+          <ul>
+            <!-- Other menu items -->
+
+            <!-- Dropdown for Sign Up -->
+            <li class="dropdown">
+                <a href="#">Sign Up</a>
+                <div class="dropdown-content">
+                    <a href="{{url_for('uregistration')}}">User Registration</a>
+                    <a href="{{url_for('sregistration')}}">Seller Registration</a>
+                </div>
+            </li>
+
+            <!-- Dropdown for Log In -->
+            <li class="dropdown">
+                <a href="#">Log In</a>
+                <div class="dropdown-content">
+                    <a href="{{url_for('ulogin')}}">User Login</a>
+                    <a href="{{url_for('slogin')}}">Seller Login</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+        </ul>
+      </div>
+    </nav>
+
+    <section class="sec1">
+      <div class="sec1-details">
+        <span id="element"></span>
+        <p>
+          BidZone is your premier destination for exciting auctions and
+          unbeatable deals. Dive into a world of bidding and winning!
+        </p>
+        <span class="desc">Where winning deals await!</span>
+        <a href="{{url_for('userviewitems')}}"><button class="btn">Start Bidding Now!</button></a>
+      </div>
+      <div class="sec1-img">
+        <img src="https://www.pngarts.com/files/16/E-Commerce-Free-PNG-Image.png" alt="" />
+      </div>
+    </section>
+
+    <section class="sec2">
+      <h1>About Us</h1>
+      <div class="first_block">
+
+              <div>
+                  Welcome to BidZone, your ultimate destination for thrilling auctions
+                  and unbeatable deals! At BidZone, we're passionate about bringing
+                  buyers and sellers together in an exciting online marketplace where
+                  everyone has the opportunity to win.
+                </div>
+                <div class="abt_img">
+                    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjB3en0yDD9-ZVp5hofnIl9cvC-RPwn5RI80WmqqMVArQReVJunjgFyW3m1GjeMlcRHED_8eG_VgWmdbYSPHjmKiMH53jgyMJH3CsUEXcFGpvuBGFoGtGEpRVjkhoiezFxlOUv_qxe7zIM/s1600/pro_team.jpg" alt="">
+                </div>
+        </div>
+        <div class="second_block">
+
+            <div>
+                Our mission at BidZone is to provide a fun, transparent, and
+                secure platform for buying and selling a wide range of items through
+                the thrill of bidding. We're dedicated to creating an inclusive
+                community where users can discover unique treasures, connect with
+                fellow bidders, and enjoy the excitement of winning auctions.
+            </div>
+            <div class="mission_img">
+                <img src="https://i0.hippopx.com/photos/219/145/124/ecommerce-selling-online-online-sales-e-commerce-preview.jpg" alt="">
+            </div>
+        </div>
+      </div>
+    </section>
+    <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+    <script>
+      var typed = new Typed("#element", {
+        strings: ['Welcome to <span style="color: aqua;">BidZone</span>'],
+        typeSpeed: 70,
+      });
+    window.addEventListener('scroll', function() {
+    var nav = document.querySelector('nav');
+    if(window.scrollY > 0) {
+        nav.style.backgroundColor = 'rgba(29, 29, 70, 1)'; 
+    } else {
+        nav.style.backgroundColor = 'transparent'; 
+    }
+});
+
+    </script>
+  </body>
+</html>

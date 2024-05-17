@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sellers Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f2f2f2;
+            background-image: url('https://img.pikbest.com/ai/illus_our/20230427/a505c91fa23323b676de16f43de2d25b.jpg!w700wp');
+            background-size: cover;
+           
+            background-repeat: no-repeat;
+        
+        }
+
+        .navbar {
+            height: 100%;
+            width: 200px;
+            position: fixed;
+            background-color: #333;
+            overflow-x: hidden;
+            transition: 0.5s;
+            padding-top: 60px;
+        }
+
+        .navbar a {
+            padding: 10px;
+            text-decoration: none;
+            font-size: 18px;
+            color: white;
+            display: block;
+            transition: 0.3s;
+        }
+
+        .navbar a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        .content {
+            margin-left: 200px;
+            padding: 16px;
+            transition: margin-left 0.5s;
+        }
+
+        .flash-message {
+            background-color: #f44336;
+            color: white;
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        h4 {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        a {
+            display: block;
+            width: 200px;
+            margin: 5px auto;
+            padding: 10px;
+            text-align: center;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        a:hover {
+            background-color: #45a049;
+        }
+
+        center {
+            display: block;
+            text-align: center;
+        }
+
+        b {
+            font-weight: bold;
+        }
+
+        @media screen and (max-width: 768px) {
+            .navbar {
+                width: 100%;
+                height: auto;
+                position: relative;
+            }
+            .navbar a {
+                float: left;
+                width: 100%;
+            }
+            .content {
+                margin-left: 0;
+            }
+        }
+    </style>
+</head>
+<div class="content">
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        {% for message in messages %}
+          <div class="flash-message">{{ message }}</div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+    </div>
+<body>
+
+<div class="navbar">
+    <h3 style="color: #ddd;">{{ session.get('seller') }}</h3>
+    <a href="{{url_for('userviewitems')}}">Explore Here</a><br><br>
+   
+    <a href="{{url_for('additems')}}">Add Items</a><br><br>
+    <a href="{{url_for('viewitems')}}">View Items</a><br><br>
+    <a href="{{url_for('viewbiditems')}}">View Bid Items</a><br><br>
+    <a href="{{url_for('ordersdetails')}}">Orders</a><br><br>
+    <a href="{{url_for('slogout')}}">Logout</a>
+    
+</div>
+
+<div class="content">
+   
+    <center><h1 style="color: aliceblue;">Sellers Dashboard</h1></center>
+   
+</div>
+
+</body>
+</html>

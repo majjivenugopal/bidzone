@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard</title>
+    <style>
+       body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.8); /* Add semi-transparent white background */
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(58, 72, 156, 0.1); /* Add a slight shadow for depth */
+}
+
+h4 {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    font-size: 24px;
+    color: #d08585;
+}
+
+.menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.menu a {
+    display: block;
+    width: 100%;
+    text-align: center;
+    margin-top: 10px;
+    padding: 12px 20px;
+    background-color: #4CAF50;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.menu a:hover {
+    background-color: #45a049;
+}
+
+.flash-message {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(211, 152, 152, 0.8);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 20px;
+    animation: flashMessage 2s ease infinite; /* Add animation for flash effect */
+}
+
+@keyframes flashMessage {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+/* Responsive Background Image */
+body {
+    background-image: url('https://img.freepik.com/premium-vector/online-shopping-digital-technology-with-icon-blue-background-ecommerce-online-store-marketing_252172-219.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h4>User Dashboard</h4>
+        <div class="menu">
+            <h3>{{ session.get('user') }}</h3>
+            <a href="{{url_for('userviewitems')}}">View Items</a>
+            <a href="{{url_for('viewcart')}}">View Favorites</a>
+            <a href="{{url_for('userbiditems')}}">View Bid Items</a>
+            <a href="{{url_for('ulogout')}}">Logout</a>
+            <a href="{{url_for('wiining_bid_details')}}">winning auction</a>
+        </div>
+    </div>
+</body>
+</html>
